@@ -1,4 +1,5 @@
 import org.sql2o.*;
+import java.util.List;
 
 public class Barber{
   private int id;
@@ -16,6 +17,17 @@ public class Barber{
     return id;
   }
 
+  @Override
+  public boolean equals(Object otherBarber){
+    if(!(otherBarber instanceof Barber)){
+      return false;
+    } else {
+      Barber newBarber = (Barber) otherBarber;
+      return this.getId() == newBarber.getId() &&
+      this.getName().equals(newBarber.getName());
+    }
+  }
+
   public void save(){
     try(Connection con = DB.sql2o.open()){
       String sql = "INSERT INTO barbers (name) VALUES (:name);";
@@ -23,6 +35,13 @@ public class Barber{
       .addParameter("name", this.name)
       .executeUpdate()
       .getKey();
+    }
+  }
+
+  public static List<Barber> all(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM barbers;";
+      return con.createQuery(sql).executeAndFetch(Barber.class);
     }
   }
 
