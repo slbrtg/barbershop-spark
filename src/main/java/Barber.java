@@ -1,0 +1,9 @@
+public class Barber{
+  private int id;
+  private String name;
+
+  public Barber (String name){
+    this.name = name;
+  }
+  
+}
