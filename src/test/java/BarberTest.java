@@ -34,6 +34,14 @@ public class BarberTest {
     testBarber2.save();
     assertEquals(true, Barber.all().get(0).equals(testBarber));
     assertEquals(true, Barber.all().get(1).equals(testBarber2));
+  }
 
+  @Test
+  public void find_returnsArtistWithTheSameId_true(){
+    Barber testBarber = new Barber("red");
+    testBarber.save();
+    Barber testBarber2 = new Barber("yellow");
+    testBarber2.save();
+    assertEquals(Barber.find(testBarber2.getId()), testBarber2);
   }
 }

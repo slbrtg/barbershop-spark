@@ -45,4 +45,14 @@ public class Barber{
     }
   }
 
+  public static Barber find(int id){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM barbers where id=:id;";
+      Barber barber = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Barber.class);
+    return barber;
+    }
+  }
+
 }
