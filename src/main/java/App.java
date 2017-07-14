@@ -18,5 +18,13 @@ public class App {
       );
     });
 
+    get("/administrator", (req, res) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/administrator.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
   }
 }
