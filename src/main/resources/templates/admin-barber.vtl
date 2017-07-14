@@ -1,0 +1,9 @@
+<h1>Add a client to: $barber.getName()</h1>
+
+<form action="/administrator/barber/:id/add-client-success" method="post">
+  <input id="barberId" name="barberId" type="hidden" value="$barber.getId()">
+  <label for="client-name">Client's name</label>
+  <input type="text" name="client-name" id="client-name">
+  <button class="btn btn-lg btn-primary" type="submit" name="add-client">Add client</button>
+
+</form>

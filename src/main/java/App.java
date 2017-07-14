@@ -54,6 +54,7 @@ public class App {
 
     get("/administrator/add-client", (req, res) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("barbers", Barber.all());
       model.put("template", "templates/add-client.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, layout)
@@ -67,6 +68,30 @@ public class App {
       barber.save();
       model.put("barber", barber);
       model.put("template", "templates/add-barber-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    get("/administrator/barber/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Barber barber = Barber.find(Integer.parseInt(request.params(":id")));
+      model.put("barber", barber);
+      model.put("template", "templates/admin-barber.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    post("/administrator/barber/:id/add-client-success", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("client-name");
+      int barberId = Integer.parseInt(request.queryParams("barberId"));
+      Barber barber = Barber.find(barberId);
+      Client client = new Client(name, barberId);
+      client.save();
+      model.put("client", client);
+      model.put("template", "templates/add-client-success.vtl");
       return new VelocityTemplateEngine().render(
         new ModelAndView(model, layout)
       );
