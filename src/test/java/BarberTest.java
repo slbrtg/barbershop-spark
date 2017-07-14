@@ -44,4 +44,12 @@ public class BarberTest {
     testBarber2.save();
     assertEquals(Barber.find(testBarber2.getId()), testBarber2);
   }
+
+  @Test
+  public void updateBarberName_updatesBarberName_yellow(){
+    Barber testBarber = new Barber("red");
+    testBarber.save();
+    testBarber.updateBarberName("yellow");
+    assertEquals("yellow", Barber.find(testBarber.getId()).getName());
+  }
 }

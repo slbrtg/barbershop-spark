@@ -55,4 +55,14 @@ public class Barber{
     }
   }
 
+  public void updateBarberName(String newName){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE barbers SET name = :name WHERE id=:id;";
+      con.createQuery(sql)
+      .addParameter("name", newName)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
 }
