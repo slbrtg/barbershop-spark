@@ -1,0 +1,5 @@
+<h1>List of all barbers</h1>
+<hr>
+#foreach($barber in $barbers)
+<h3><a href="/barber/$barber.getId()">$barber.getName()</a></h3>
+#end

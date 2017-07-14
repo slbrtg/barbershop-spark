@@ -26,5 +26,39 @@ public class App {
       );
     });
 
+    get("/administrator/view-barbers", (req, res) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("barbers", Barber.all());
+      model.put("template", "templates/view-barbers.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    get("/administrator/view-clients", (req, res) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("clients", Client.all());
+      model.put("template", "templates/view-clients.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    get("/administrator/add-barber", (req, res) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/add-barber.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    get("/administrator/add-client", (req, res) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/add-client.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
   }
 }
