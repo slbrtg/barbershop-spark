@@ -60,5 +60,16 @@ public class App {
       );
     });
 
+    post("/administrator/add-barber/success", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("barber-name");
+      Barber barber = new Barber(name);
+      barber.save();
+      model.put("barber", barber);
+      model.put("template", "templates/add-barber-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
   }
 }
