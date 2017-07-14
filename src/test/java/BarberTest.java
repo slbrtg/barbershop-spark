@@ -18,4 +18,11 @@ public class BarberTest {
     Barber testBarber = new Barber("red");
     assertEquals("red", testBarber.getName());
   }
+
+  @Test
+  public void save_createsIdForBarberInDatabase_true(){
+    Barber testBarber = new Barber("red");
+    testBarber.save();
+    assertTrue(testBarber.getId() > 0);
+  }
 }
