@@ -12,4 +12,10 @@ public class BarberTest {
     Barber testBarber = new Barber("red");
     assertTrue(testBarber instanceof Barber);
   }
+
+  @Test
+  public void getName_returnsBarberName_red(){
+    Barber testBarber = new Barber("red");
+    assertEquals("red", testBarber.getName());
+  }
 }
