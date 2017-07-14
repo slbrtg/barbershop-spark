@@ -37,7 +37,7 @@ public class BarberTest {
   }
 
   @Test
-  public void find_returnsArtistWithTheSameId_true(){
+  public void find_returnsBarberWithTheSameId_true(){
     Barber testBarber = new Barber("red");
     testBarber.save();
     Barber testBarber2 = new Barber("yellow");
@@ -51,5 +51,13 @@ public class BarberTest {
     testBarber.save();
     testBarber.updateBarberName("yellow");
     assertEquals("yellow", Barber.find(testBarber.getId()).getName());
+  }
+
+  @Test public void delete_deletesBarberFromDatabase_true(){
+    Barber testBarber = new Barber("red");
+    testBarber.save();
+    int testBarberId = testBarber.getId();
+    testBarber.delete();
+    assertEquals(null, Barber.find(testBarber.getId()));
   }
 }
