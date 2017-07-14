@@ -3,12 +3,12 @@ import java.util.List;
 
 public class Client{
   private int id;
-  private int barberid;
+  private int barberId;
   private String name;
 
-  public Client (String name, int barberid){
+  public Client (String name, int barberId){
     this.name = name;
-    this.barberid = barberid;
+    this.barberId = barberId;
   }
 
   public String getName(){
@@ -20,7 +20,7 @@ public class Client{
   }
 
   public int getBarberId(){
-    return barberid;
+    return barberId;
   }
 
   @Override
@@ -40,7 +40,7 @@ public class Client{
       String sql = "INSERT INTO clients (name, barberid) VALUES (:name, :barberid);";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("name", this.name)
-      .addParameter("barberid", this.barberid)
+      .addParameter("barberid", this.barberId)
       .executeUpdate()
       .getKey();
     }
@@ -68,6 +68,16 @@ public class Client{
       String sql = "UPDATE clients SET name = :name WHERE id=:id;";
       con.createQuery(sql)
       .addParameter("name", newName)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void updateBarberId(int newBarberId){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE clients SET barberId = :barberId WHERE id=:id;";
+      con.createQuery(sql)
+      .addParameter("barberId", newBarberId)
       .addParameter("id", id)
       .executeUpdate();
     }

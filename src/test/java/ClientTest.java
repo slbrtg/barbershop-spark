@@ -53,6 +53,14 @@ public class ClientTest {
     assertEquals("yellow", Client.find(testClient.getId()).getName());
   }
 
+  @Test
+  public void updateBarberId_updatesBarberId_7(){
+    Client testClient = new Client("red", 1);
+    testClient.save();
+    testClient.updateBarberId(7);
+    assertEquals(7, Client.find(testClient.getId()).getBarberId());
+  }
+
   @Test public void delete_deletesClientFromDatabase_true(){
     Client testClient = new Client("red", 1);
     testClient.save();
