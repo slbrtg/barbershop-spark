@@ -107,5 +107,69 @@ public class App {
       );
     });
 
+    get("/barber/:id/update", (request, response) -> {
+      Map<String,Object> model = new HashMap<String, Object>();
+      Barber barber = Barber.find(Integer.parseInt(request.params(":id")));
+      model.put("barber", barber);
+      model.put("template", "templates/barber-update.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    get("/client/:id/update", (request, response) -> {
+      Map<String,Object> model = new HashMap<String, Object>();
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+      model.put("client", client);
+      model.put("template", "templates/client-update.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    post("/barber/:id/update-success", (request, response) -> {
+      Map<String,Object> model = new HashMap<String, Object>();
+      Barber barber = Barber.find(Integer.parseInt(request.params(":id")));
+      String name = request.queryParams("name");
+      barber.updateBarberName(name);
+      model.put("barber", barber);
+      model.put("template", "templates/update-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    post("/client/:id/update-success", (request, response) -> {
+      Map<String,Object> model = new HashMap<String, Object>();
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+      String name = request.queryParams("name");
+      client.updateClientName(name);
+      model.put("client", client);
+      model.put("template", "templates/update-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    post("/barber/:id/delete", (request, response) -> {
+      Map<String,Object> model = new HashMap<String, Object>();
+      Barber barber = Barber.find(Integer.parseInt(request.params(":id")));
+      barber.delete();
+      model.put("template", "templates/delete-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
+    post("/client/:id/delete", (request, response) -> {
+      Map<String,Object> model = new HashMap<String, Object>();
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+      client.delete();
+      model.put("template", "templates/delete-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
   }
 }

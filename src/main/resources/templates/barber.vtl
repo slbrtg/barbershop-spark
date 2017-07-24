@@ -1,2 +1,8 @@
 <h1>$barber.getName()'s page</h1>
 <h3>Stay tuned for more!</h3>
+<a href="/barber/$barber.getId()/update">
+    <button class="btn btn-warning" type="submit" name="button">Update</button>
+</a>
+<form action="/barber/$barber.getId()/delete" method="post">
+  <button class="btn btn-danger" type="submit" name="button">Delete</button>
+</form>
