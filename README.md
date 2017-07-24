@@ -19,7 +19,7 @@ _A simple website that allows a barbershop owner to keep track of his barbers an
 * _2) psql (in a different terminal window or tab)_
 * _3) CREATE DATABASE barbershop;
 * _4) CREATE TABLE barbers(id serial PRIMARY KEY, name varchar);
-* _5) CREATE TABLE clients(id serial PRIMARY KEY, name varchar);
+* _5) CREATE TABLE clients(id serial PRIMARY KEY, name varchar, barberid int);
 * _in cli run 'gradle run' browse to localhost:4567_
 
 
