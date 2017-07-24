@@ -13,7 +13,13 @@ _A simple website that allows a barbershop owner to keep track of his barbers an
 
 ## Setup/Installation Requirements
 
-*  Clone project
+*  _clone project_
+* _Open terminal and recreate database with the following commands_
+* _1) postgres_
+* _2) psql (in a different terminal window or tab)_
+* _3) CREATE DATABASE barbershop;
+* _4) CREATE TABLE barbers(id serial PRIMARY KEY, name varchar);
+* _5) CREATE TABLE clients(id serial PRIMARY KEY, name varchar);
 * _in cli run 'gradle run' browse to localhost:4567_
 
 
