@@ -1,2 +1,8 @@
 <h1>$client.getName()'s page</h1>
 <h3>Stay tuned for more!</h3>
+<a href="/client/$client.getId()/update">
+    <button class="btn btn-warning" type="submit" name="button">Update</button>
+</a>
+<form action="/client/$client.getId()/delete" method="post">
+  <button class="btn btn-danger" type="submit" name="button">Delete</button>
+</form>

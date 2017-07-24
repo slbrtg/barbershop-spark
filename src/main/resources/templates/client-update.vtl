@@ -1,0 +1,6 @@
+<h1>Update your Client's name</h1>
+<form  action="/client/$client.getId()/update-success" method="post">
+  <label for="name">Update Name</label>
+  <input id="name" type="text" name="name" value="$client.getName()">
+  <button class="btn btn-warning" type="submit" name="button">Submit</button>
+</form>
