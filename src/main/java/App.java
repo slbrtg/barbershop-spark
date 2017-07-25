@@ -61,6 +61,19 @@ public class App {
       );
     });
 
+    post("/administrator/add-client/success", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      int barberId = Integer.parseInt(request.queryParams("barberId"));
+      Client client = new Client(name, barberId);
+      client.save();
+      model.put("client", client);
+      model.put("template", "templates/add-client-success.vtl");
+      return new VelocityTemplateEngine().render(
+        new ModelAndView(model, layout)
+      );
+    });
+
     post("/administrator/add-barber/success", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("barber-name");
@@ -87,7 +100,7 @@ public class App {
       );
     });
 
-    get("/barber/:id", (request, response) -> {
+    get("/administrator/barber/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Barber barber = Barber.find(Integer.parseInt(request.params(":id")));
       model.put("barber", barber);
@@ -97,7 +110,7 @@ public class App {
       );
     });
 
-    get("/client/:id", (request, response) -> {
+    get("/administrator/client/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Client client = Client.find(Integer.parseInt(request.params(":id")));
       model.put("client", client);

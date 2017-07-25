@@ -1,4 +1,12 @@
-<h1>Select a barber to assign this client to:</h1>
-#foreach($barber in $barbers)
-<h3><a href="/administrator/barber/$barber.getId()">$barber.getName()</a></h3>
-#end
+<h1>Add a client:</h1>
+
+<form action="/administrator/add-client/success" method="post">
+  <label for="name">Client Name</label>
+  <input id="name" type="text" name="name">
+  <select id="barberId" name="barberId">
+    #foreach($barber in $barbers)
+      <option value="$barber.getId()">$barber.getName()</option>
+    #end
+  </select>
+  <button class="btn btn-primary" type="submit" name="button">Add Client</button>
+</form>
